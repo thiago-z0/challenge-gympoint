@@ -1,6 +1,6 @@
-const  {Model}  = require('sequelize');
-const Sequelize = require('sequelize');
-const bcrypt = require('bcryptjs');
+import  {Model}  from 'sequelize';
+import Sequelize from 'sequelize';
+import bcrypt from'bcryptjs';
 
 
 class User extends Model {
@@ -14,11 +14,13 @@ class User extends Model {
     {
       sequelize,
     });
+    return this;
   }
 
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);
   }
+
 }
 
 export default User;

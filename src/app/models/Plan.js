@@ -1,8 +1,8 @@
-import {Model}  from 'sequelize';
+import  {Model}  from 'sequelize';
 import Sequelize from 'sequelize';
 
 
-class Plans extends Model {
+class Plan extends Model {
   static init (sequelize) {
     super.init({
       title: Sequelize.STRING,
@@ -12,7 +12,15 @@ class Plans extends Model {
     {
       sequelize,
     });
+    return this;
+  }
+  static associate(models) {
+    this.belongsTo(models.Customer, {
+      through: 'registrations',
+      as: 'Customers',
+      foreignKey: 'plan_id',
+    });
   }
 }
 
-export default Plans;
+export default Plan;

@@ -34,7 +34,10 @@ class CustomerController {
   }
 
   async index (req,res) {
-    return res.json(Customer);
+    const data = await Customer.findAll({
+      attributes: [ 'id', 'name', 'email', 'age', 'weight', 'height' ]
+    });
+    return res.json(data);
   }
 
 };
